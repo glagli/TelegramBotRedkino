@@ -62,5 +62,5 @@ async def cmd_news(message: types.Message):
         "🍕 Сити пицца: +79542281337\nОт 54 рублей", reply_markup=types.ReplyKeyboardRemove())
 
 if __name__ == "__main__":
-    # Запуск бота
+    # Запуск бота.
     executor.start_polling(dp, skip_updates=True)
