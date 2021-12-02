@@ -55,7 +55,7 @@ async def cmd_news(message: types.Message):
         "по команде /type, или просто перезапустив бота - команда /start.\n\n "
         "Расскажи, что произошло?", reply_markup=types.ReplyKeyboardRemove())
 
-# Хэндлер на команду Заказать еду.
+# Хэндлер на команду Заказать еду..
 @dp.message_handler(Text(equals="🍕 Заказать еду"))
 async def cmd_news(message: types.Message):
     await message.answer(
