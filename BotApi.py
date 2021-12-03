@@ -43,9 +43,14 @@ async def cmd_type(message: types.Message):
 
 # Хэндлер на команду Вызвать такси
 @dp.message_handler(Text(equals="🚕 Вызвать такси"))
-async def cmd_news(message: types.Message):
+async def cmd_taxi(message: types.Message):
     await message.answer(
         "🚕 Такси Молния: +79542281337\nОт 100 рублей", reply_markup=types.ReplyKeyboardRemove())
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
+    keyboard.add(*buttons[0:2])
+    keyboard.add(buttons[2])
+    await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
 
 # Хэндлер на команду Предложить новость
 @dp.message_handler(Text(equals="📣 Предложить новость"))
@@ -55,11 +60,17 @@ async def cmd_news(message: types.Message):
         "по команде /type, или просто перезапустив бота - команда /start.\n\n "
         "Расскажи, что произошло?", reply_markup=types.ReplyKeyboardRemove())
 
+
 # Хэндлер на команду Заказать еду..
 @dp.message_handler(Text(equals="🍕 Заказать еду"))
-async def cmd_news(message: types.Message):
+async def cmd_food(message: types.Message):
     await message.answer(
         "🍕 Сити пицца: +79542281337\nОт 54 рублей", reply_markup=types.ReplyKeyboardRemove())
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
+    keyboard.add(*buttons[0:2])
+    keyboard.add(buttons[2])
+    await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
 
 if __name__ == "__main__":
     # Запуск бота.
