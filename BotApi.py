@@ -93,10 +93,10 @@ async def cmd_ad (message: types.Message):
 # Хэндлер на команду Заказать еду..
 @dp.message_handler(Text(equals="🍕 Заказать еду"))
 async def cmd_food(message: types.Message):
-    await message.answer(
-        "🍕 Сити пицца: +79542281337\nОт 54 рублей", reply_markup=types.ReplyKeyboardRemove())
+
     p = open("test.jpg", "rb")
-    await bot.send_photo(message.chat.id, p)
+    await bot.send_photo(message.chat.id, p, "🍕 Сити пицца: +79542281337\nОт 54 рублей")
+
 
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду", "Реклама"]
