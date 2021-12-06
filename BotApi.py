@@ -71,7 +71,7 @@ async def cmd_news(message: types.Message):
 @dp.message_handler(Text(equals="🚕 Вызвать такси"))
 async def cmd_taxi (message: types.Message):
     await message.answer(
-        "🚕 Такси Молния: +79542281337\nОт 100 рублей", reply_markup=types.ReplyKeyboardRemove())
+        "🚕 Такси Молния: +79112223334\nДля размещения рекламы такси писать сюда -> @RedkinoAD", reply_markup=types.ReplyKeyboardRemove())
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду", "Реклама"]
     keyboard.add(*buttons[0:3])
@@ -95,7 +95,7 @@ async def cmd_ad (message: types.Message):
 async def cmd_food(message: types.Message):
 
     p = open("test.jpg", "rb")
-    await bot.send_photo(message.chat.id, p, "🍕 Сити пицца: +79542281337\nОт 54 рублей")
+    await bot.send_photo(message.chat.id, p, "🍕 Сити пицца: +79112223344\nДля размещения рекламы кафе писать сюда -> @RedkinoAD")
 
 
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
