@@ -25,9 +25,9 @@ async def cmd_start(message: types.Message):
     await message.answer("👨🏻‍💻Привет!\n\nСюда можно прислать любую новость:  текст, фото, видео и аудио.\n\n"
                          "💁 Вызвать такси или 🍕 Заказать еду")
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
-    keyboard.add(*buttons[0:2])
-    keyboard.add(buttons[2])
+    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду", "Реклама"]
+    keyboard.add(*buttons[0:3])
+    keyboard.add(buttons[3])
     await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
 
 """"
@@ -35,9 +35,9 @@ async def cmd_start(message: types.Message):
 @dp.message_handler(commands="type")
 async def cmd_type(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
-    keyboard.add(*buttons[0:2])
-    keyboard.add(buttons[2])
+    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду", "Реклама"]
+    keyboard.add(*buttons[0:3])
+    keyboard.add(buttons[3])
     await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
 
 """
@@ -62,9 +62,9 @@ async def cmd_news(message: types.Message):
         await message.answer("👀 Ваш пост успешно принят\n"
                              "Хотите что-то ещё рассказать?")
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
-        keyboard.add(*buttons[0:2])
-        keyboard.add(buttons[2])
+        buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду", "Реклама"]
+        keyboard.add(*buttons[0:3])
+        keyboard.add(buttons[3])
         await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
 
 # Хэндлер на команду Вызвать такси
@@ -73,12 +73,20 @@ async def cmd_taxi (message: types.Message):
     await message.answer(
         "🚕 Такси Молния: +79542281337\nОт 100 рублей", reply_markup=types.ReplyKeyboardRemove())
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
-    keyboard.add(*buttons[0:2])
-    keyboard.add(buttons[2])
+    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду", "Реклама"]
+    keyboard.add(*buttons[0:3])
+    keyboard.add(buttons[3])
     await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
 
-
+@dp.message_handler(Text(equals="Реклама"))
+async def cmd_ad (message: types.Message):
+    await message.answer(
+        "По поводу рекламы - @RedkinoAD", reply_markup=types.ReplyKeyboardRemove())
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду", "Реклама"]
+    keyboard.add(*buttons[0:3])
+    keyboard.add(buttons[3])
+    await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
 
 
 
@@ -91,9 +99,9 @@ async def cmd_food(message: types.Message):
     await bot.send_photo(message.chat.id, p)
 
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
-    keyboard.add(*buttons[0:2])
-    keyboard.add(buttons[2])
+    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду", "Реклама"]
+    keyboard.add(*buttons[0:3])
+    keyboard.add(buttons[3])
     await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
 
 
