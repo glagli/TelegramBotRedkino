@@ -1,58 +1,36 @@
-"""
+from aiogram import executor # pip install aiogram
+from Init import init
+from Button import buttonFunctions
+from Start import start
+from Taxi import taxi
+from Food import food
+from AD import ad
+from News import news
 
-Пока можем реальзовывать в произвольном стиле.
-Думаю начать надо с инициальзации бота.
-Прописать /start
-Потом организовать прослушку сообщений боту
-Следующий шаг обработка сообщений
-
-
-"""
-
-
-import logging
-from aiogram import Bot, Dispatcher, executor, types  # pip install aiogram
-from aiogram.dispatcher.filters import Text
-
-# Объект бота
-bot = Bot(token="5070557333:AAE095ix1EIyFPJcX4k0u3IyOfNNZOD3hoQ")
-# Диспетчер для бота
-dp = Dispatcher(bot)
-# Включаем логирование, я пока не очень разобрался чё как оно работает
-logging.basicConfig(level=logging.INFO)
+tokenVladG = "5089204526:AAHl0aN_0BqvVo_0yf8F6ys5_zGhSycT4ww"  # тестовый бот ВладГ
+tokenProd = "5070557333:AAE095ix1EIyFPJcX4k0u3IyOfNNZOD3hoQ"  # тестовый бот Основа
 
 
-# Хэндлер на команду /start
-@dp.message_handler(commands="start")
-async def cmd_start(message: types.Message):
-    await message.answer("👨🏻‍💻Привет!\n\nСюда можно прислать любую новость:  текст, фото, видео и аудио.\n\n"
-                         "💁 Вызвать такси или 🍕 Заказать еду")
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
-    keyboard.add(*buttons[0:2])
-    keyboard.add(buttons[2])
-    await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
+bot, dp = init(tokenVladG)
+keyboard = buttonFunctions()
 
 
-# Хэндлер на команду /type
-@dp.message_handler(commands="type")
-async def cmd_type(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["📣 Предложить новость", "🚕 Вызвать такси", "🍕 Заказать еду"]
-    keyboard.add(*buttons[0:2])
-    keyboard.add(buttons[2])
-    await message.answer("⌨️ Выбери что хотите сделать:", reply_markup=keyboard)
+# start
+start(dp, keyboard)
 
+# Предложить новость
+news(dp, keyboard, bot)
 
-# Хэндлер на команду Предложить новость
-@dp.message_handler(Text(equals="📣 Предложить новость"))
-async def cmd_news(message: types.Message):
-    await message.answer(
-        "📣 Предложить новость. Всегда можно изменить свой выбор "
-        "по команде /type, или просто перезапустив бота - команда /start.\n\n "
-        "Расскажи, что произошло?", reply_markup=types.ReplyKeyboardRemove())
+# Вызвать такси
+taxi(dp, keyboard)
+
+# Реклама
+ad(dp, keyboard)
+
+# Заказать еду..
+food(dp, keyboard, bot)
 
 
 if __name__ == "__main__":
-    # Запуск бота
+    # Запуск бота.
     executor.start_polling(dp, skip_updates=True)
