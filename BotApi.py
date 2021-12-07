@@ -1,4 +1,4 @@
-from aiogram import executor # pip install aiogram
+from aiogram import executor  # pip install aiogram
 from Init import init
 from Button import buttonFunctions
 from Start import start

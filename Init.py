@@ -2,7 +2,7 @@ import logging
 from aiogram import Bot, Dispatcher
 
 
-def init (token):
+def init(token):
     bot = Bot(token=token)  # тестовый бот Основа
     # Диспетчер для бота
     dp = Dispatcher(bot)
